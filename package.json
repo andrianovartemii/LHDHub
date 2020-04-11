@@ -1,0 +1,21 @@
+{
+  "name": "lhdgame",
+  "version": "0.0.1",
+  "description": "local hack day hub",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p",
+    "watch": "webpack --watch"
+  },
+  "author": "Andrianov Artemii",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.1"
+  }
+}

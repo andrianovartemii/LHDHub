@@ -1,0 +1,64 @@
+html, body {
+  height: 100%;
+  background-color: #3b2862;
+}
+
+body {
+  display: -ms-flexbox;
+  color: #fff;
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .100);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.8);
+}
+
+a
+{
+  color: white;
+}
+
+a:hover
+{
+  color: red;
+}
+
+#logIn
+{
+  width: 100%;
+  max-width: 330px;
+  align-items: center;
+}
+
+#logIn h1
+{
+  font-size: 22px;
+}
+
+#logIn .row
+{
+  height: 900px;
+}
+
+form
+{
+  display: block;
+  justify-content: center;
+}
+
+input
+{
+  display: flex;
+}
+#game .score
+{
+  height: 200px;
+  font-size: 40px;
+}
+
+#game .row-screen
+{
+  height: 700px;
+}
+
+.off
+{
+  display: none;
+}
