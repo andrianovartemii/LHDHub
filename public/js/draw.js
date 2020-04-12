@@ -60,12 +60,12 @@ window.onload
   function tryToMakeStep(y, x)
   {
     console.log(x + " " + y);
+    checkExtras(y, x);
     if(level.levelArray[y][x] != 1)
     {
       currentPlayer.posX = x;
       currentPlayer.posY = y;
       refresh();
-      checkExtras(y, x);
       draw();
     }
   }
@@ -73,13 +73,18 @@ window.onload
   function checkExtras(y, x)
   {
     switch(level.levelArray[y][x]){
-        case 0:
-        stepSound.play();
+        case 3:
+        extras({id: currentPlayer.id, eType: 3, x: x, y: y});
         break;
         case 4:
         coinSound.play();
-        //extrasCoin({x: currentPlayer.posX, y: currentPlayer.posX});
+        extras({id: currentPlayer.id, eType: 4, x: x, y: y});
         break;
+        case 5:
+        extras({id: currentPlayer.id, eType: 5, x: x, y: y});
+        break;
+        default:
+        stepSound.play();
     }
   }
   //Get Current Player
@@ -132,16 +137,16 @@ window.onload
   //Level
   let level = {
     levelHeight: 6,
-    levelWidth: 9,
+    levelWidth: 11,
     shiftX: 0,
     shiftY: 0,
     levelArray: [
-      [0, 0, 0, 0, 1, 1, 1, 1, 1],
-      [1, 1, 1, 1, 1, 0, 0, 0, 1],
-      [1, 0, 0, 0, 1, 0, 0, 0, 1],
-      [1, 0, 2, 0, 0, 0, 0, 0, 5],
-      [1, 0, 0, 0, 1, 3, 4, 0, 1],
-      [1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0],
+      [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0],
+      [1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1],
+      [1, 0, 2, 0, 0, 0, 0, 0, 5, 0, 1],
+      [1, 0, 0, 0, 1, 3, 4, 0, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
     ]
   };
   function calculateShift()
@@ -172,6 +177,7 @@ window.onload
         if(level.levelArray[h][w] == 1) drawSprite(wallSpr, w, h);
         if(level.levelArray[h][w] == 3) drawSprite(questionSpr, w, h);
         if(level.levelArray[h][w] == 4) drawSprite(coinSpr, w, h);
+        if(level.levelArray[h][w] == 5) drawSprite(checkSpr, w, h);
       }
     }
     for(var i = 0; i < players.length; i++)

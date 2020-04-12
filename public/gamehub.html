@@ -21,82 +21,155 @@
       </ul>
     </div>
   </header>
+  <!--
+  <section class="container-fluid" id ="">
+  <div class="row" id="question">
+  <div class="col-xs">
+  <h1>Question</h1></div>
+  <div class="row">
+  <button class="col-xs" type="button" name="button">Answer</button>
+  <button class="col-xs" type="button" name="button">Answer</button>
+</div>
+<div class="row">
+<button class="col-xs" type="button" name="button">Answer</button>
+<button class="col-xs" type="button" name="button">Answer</button>
+</div>
 
-  <section class="container" id ="logIn">
-    <div class="row align-items-center">
-      <div class="col">
-        <form action="login">
-          <h1>Hi, LogIn for continue!</h1>
-          <input type="nickname" id="inputNickname" placeholder="Nickname">
-          <input type="password" id="inputPassword" placeholder="Password">
-          <div id='form-alert'class="alert alert-danger off" role="alert"><strong>Oh!</strong> Wrong data, bro!.</div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-        </form>
-      </div>
+</div>
+<div class="row align-items-center justify-content-center" id = "logIn">
+<div class="col-6">
+<form action="login">
+<h1>Hi, LogIn for continue!</h1>
+<input type="nickname" id="inputNickname" placeholder="Nickname">
+<input type="password" id="inputPassword" placeholder="Password">
+<div id='form-alert'class="alert alert-danger off" role="alert"><strong>Oh!</strong> Wrong data, bro!.</div>
+<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+</form>
+</div>
+</div>
+<div class="row score align-items-center justify-content-center" id="game">
+<div class="col-xs score-counter">5000</div>
+</div>
+<div class="row game-screen align-items-center">
+<div class="col-xs">
+<canvas id="canvas" width = "1000" height = "600"></canvas>
+</div>
+</div>
+</section>
+-->
+  <form class="div container" id="login">
+    <div class="row justify-content-center">
+      <h1>Hey, Log In</h1>
     </div>
-  </section>
-
-  <section class="container off" id="game">
-    <div class="row score align-items-center justify-content-center">
-      <div class="col-xs score-counter">5000</div>
+    <div class="row align-items-center justify-content-center">
+      <div class="col-xs" style="text-align: center"><input type="nickname" id="inputNickname" placeholder="Nickname"></div>
     </div>
-    <div class="row game-screen align-items-center">
-      <div class="col-xs">
-        <canvas id="canvas" width = "1000" height = "600"></canvas>
-      </div>
+    <div class="row align-items-center justify-content-center">
+      <div class="col-xs" style="text-align: center"><input type="password" id="inputPassword" placeholder="Password"></div>
     </div>
-  </section>
+    <div class="row align-items-center justify-content-center">
+    <div id='form-alert'class="alert alert-danger off" role="alert"><strong>Oh!</strong> Wrong data, bro!.</div>
+  </div>
+    <div class="row align-items-center justify-content-center">
+      <div class="col-xs"><button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button></div></div>
+    </form>
+  </form>
+
+<div class="div container off" id="game">
+  <div class="row score align-items-center justify-content-center" id="game">
+    <div class="col-xs score-counter">5000</div>
+  </div>
+  <div class="row game-screen align-items-center justify-content-center">
+    <div class="col-xs">
+      <canvas id="canvas" width = "1000" height = "600"></canvas>
+    </div>
+  </div>
+</div>
+
+
+<div class="div container off" id="question">
+  <div class="row justify-content-center">
+    <h1>Question</h1>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col" style="text-align: center"><button type="button" name="button">Answer</button></div>
+    <div class="col" style="text-align: center"><button type="button" name="button">Answer</button></div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col" style="text-align: center"><button type="button" name="button">Answer</button></div>
+    <div class="col" style="text-align: center"><button type="button" name="button">Answer</button></div>
+  </div>
+</div>
 
 
 
 
 
-  <script src="socket.io/socket.io.js"></script>
-  <script src="js/draw.js"></script>
-  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script src="socket.io/socket.io.js"></script>
+<script src="js/draw.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
 
 
 
-  <script type="text/javascript">
-  var socket = io();
+<script type="text/javascript">
+var socket = io();
 
 
-  $('form').submit(function(e){
-    e.preventDefault();
-    console.log("click!");
-    $('#form-alert').addClass("off");
-    socket.emit('login', {nick: $('#inputNickname').val(), pass: $('#inputPassword').val()});
-    return false;
-  });
+$('form').submit(function(e){
+  e.preventDefault();
+  console.log("click!");
+  $('#form-alert').addClass("off");
+  socket.emit('login', {nick: $('#inputNickname').val(), pass: $('#inputPassword').val()});
+  return false;
+});
 
-  socket.on('loginRep', function(data){
-    playerSet(data);
-    socket.emit('spawn', spawn());
-    $('#logIn').addClass("off");
-    $('#game').removeClass("off");
-  });
-  socket.on('loginWrong', function(){
-    $('#form-alert').removeClass("off");
-  });
-  <!-- Java Scripts For Game-->
-  socket.on('disconnectsmb', function(data){
-    remove(data);
-  });
-  socket.on('getgameState', function(data){
-    console.log(data);
-    getState(data);
-  });
-  socket.on('instance', function(data){
-    instance(data);
-  });
-  function refresh(){
-    socket.emit('refresh', spawn());
-  }
-  socket.on('refresh', function(data){
-    refreshPlayerPos(data);
-  });
+socket.on('loginRep', function(data){
+  playerSet(data);
+  socket.emit('spawn', spawn());
+  $('#login').addClass("off");
+  $('.score-counter').text(data.score);
+  $('#game').removeClass("off");
+});
+socket.on('loginWrong', function(){
+  $('#form-alert').removeClass("off");
+});
+<!-- Java Scripts For Game-->
+socket.on('disconnectsmb', function(data){
+  remove(data);
+});
+socket.on('getgameState', function(data){
+  console.log(data);
+  getState(data);
+});
+socket.on('instance', function(data){
+  instance(data);
+});
+function refresh(){
+  socket.emit('refresh', spawn());
+}
+socket.on('refresh', function(data){
+  refreshPlayerPos(data);
+});
+<!-- Extras -->
+function extras(data)
+{
+  socket.emit('extras', data);
+}
+socket.on('extrasCoin', function(data){
+  console.log(data);
+});
 
+socket.on('extrasQuestion', function(data){
+    $('#question').removeClass("off");
+    $('#game').addClass("off");
+
+
+});
+socket.on('extrasCheck', function(data){
+  console.log(data);
+});
 
 </script>
 </div>

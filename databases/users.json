@@ -1,0 +1,32 @@
+{
+  "users": [
+  {
+    "id": 4,
+    "name": "Artemii",
+    "pass": "1111",
+    "score": 10,
+    "extras": [0, 1, 2, 3]
+  },
+  {
+    "id": 1,
+    "name": "Bill",
+    "pass": "1111",
+    "score": 100,
+    "extras": [0, 1, 2, 3]
+  },
+  {
+    "id": 2,
+    "name": "",
+    "pass": "1111",
+    "score": 0,
+    "extras": [0, 1, 2, 3]
+  },
+  {
+    "id": 3,
+    "name": "John",
+    "pass": "1111",
+    "score": 0,
+    "extras": [0, 1, 2, 3]
+  }
+]
+}
